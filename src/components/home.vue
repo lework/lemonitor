@@ -11,7 +11,6 @@
     </div>
     <div class="content">
       <a-spin :spinning="spinning">
-
         <a-list itemLayout="horizontal"
                 :pagination="pagination"
                 :dataSource="softwareList">
@@ -124,7 +123,6 @@ export default {
             let resultList = []
             this.softwareList.forEach((e) => {
               if (e.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
-                console.log(e)
                 resultList.push(e)
               }
             })

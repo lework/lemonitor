@@ -1,7 +1,7 @@
 <template>
   <div class="usage-content">
     <a-spin :spinning="spinning">
-      <vue-markdown :source="data" ></vue-markdown>
+      <vue-markdown :source="data"></vue-markdown>
     </a-spin>
   </div>
 </template>
@@ -15,8 +15,11 @@ import 'highlight.js/styles/atom-one-dark.css'
 
 const highlightCode = () => {
   const preEl = document.querySelectorAll('pre')
-
+  const codeEl = document.querySelectorAll('code')
   preEl.forEach((el) => {
+    hljs.highlightBlock(el)
+  })
+  codeEl.forEach((el) => {
     hljs.highlightBlock(el)
   })
 }
@@ -53,7 +56,7 @@ export default {
     this._getData()
     highlightCode()
   },
-  beforeDestroy () {},
+  beforeDestroy () { },
   updated () {
     highlightCode()
   }
@@ -61,7 +64,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@min-width: 1000px;
+
 .usage-content {
   font-size: 14px;
+  width: 100%;
+  padding: 0px 80px 20px 80px;
+  @media screen {
+    @media (max-width: @min-width) {
+      padding:  0 10px 10px 10px;
+    }
+  }
 }
+
 </style>

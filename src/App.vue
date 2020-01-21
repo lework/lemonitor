@@ -7,13 +7,15 @@
       </div>
     </div>
     <div class="main">
+      <a-spin tip="Loading..." :spinning="isLoading" style="margin: 20px">
       <div class="content">
         <a-back-top />
         <router-view />
       </div>
+      </a-spin>
       <div class="footer">
         <p>
-          <a href="https://github.com/lework/leversion/issues"
+          <a href="https://github.com/lework/lemonitor/issues"
              target="_blank">告诉我们</a>，我们可能会把它带给您！
         </p>
         <span>已稳定运行 <b>{{ runDay }}</b> 天！</span>
@@ -26,7 +28,8 @@
 </template>
 
 <script>
-import { BackTop } from 'ant-design-vue'
+import { BackTop, Spin } from 'ant-design-vue'
+import {mapState} from 'vuex'
 
 export default {
   name: 'app',
@@ -44,7 +47,13 @@ export default {
     }
   },
   components: {
-    ABackTop: BackTop
+    ABackTop: BackTop,
+    ASpin: Spin
+  },
+  computed: {
+    ...mapState([
+      'isLoading'
+    ])
   }
 }
 </script>
