@@ -168,7 +168,7 @@
   },
   {
     "name": "中国科学技术大学",
-    "url": "https://mirrors.ustc.edu.cn",
+    "url": "https://mirrors.ustc.edu.cn/",
     "tag_color": "#2db7f5",
     "item": [
       "alpine",
@@ -536,7 +536,7 @@
   },
   {
     "name": "北京理工大学",
-    "url": "http://mirror.bit.edu.cn",
+    "url": "http://mirror.bit.edu.cn/",
     "item": [
       "Apache",
       "TurnKey",
@@ -581,7 +581,7 @@
   },
   {
     "name": "浙江大学",
-    "url": "http://mirrors.zju.edu.cn",
+    "url": "http://mirrors.zju.edu.cn/",
     "item": [
       "ArchLinux",
       "CentOS",
@@ -901,7 +901,7 @@
   },
   {
     "name": "豆瓣",
-    "url": "https://pypi.doubanio.com",
+    "url": "https://pypi.doubanio.com/",
     "item": ["PyPI"]
   },
   {
@@ -1035,7 +1035,6 @@
       "go",
       "haproxy",
       "iojs",
-      "jenkins",
       "kubernetes",
       "mongodb",
       "nginx",
@@ -1058,12 +1057,12 @@
       "epel",
       "mysql",
       "NodeSource",
-      "cetnos"
+      "centos"
     ]
   },
   {
     "name": "淘宝",
-    "url": "http://npm.taobao.org/mirrors",
+    "url": "http://npm.taobao.org/mirrors/",
     "item": ["nodejs", "npm"]
   },
   {
