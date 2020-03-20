@@ -82,7 +82,6 @@ export default {
 .toc {
   margin-left: -160px;
   position: fixed;
-  z-index: 999;
   @media screen {
     @media (max-width: @min-width) {
       position: relative;

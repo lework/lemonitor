@@ -1218,17 +1218,48 @@
       "ubuntu-releases",
       "virtualbox"
     ]
-  },{
+  },
+  {
+    "name": "云南大学",
+    "url": "http://mirrors.ynu.edu.cn/",
+    "item": [
+      "arch4edu",
+      "archlinux",
+      "archlinuxarm",
+      "archlinuxcn",
+      "blackarch",
+      "centos",
+      "debian-cd",
+      "debian-multimedia",
+      "debian-nonfree",
+      "debian-security",
+      "debian",
+      "deepin-cd",
+      "deepin",
+      "docker-ce",
+      "fedora",
+      "kali-images",
+      "kali-security",
+      "kali",
+      "raspbian",
+      "steamos",
+      "ubuntu-cdimage",
+      "ubuntu"
+    ]
+  },
+  {
     "name": "百度Goproxy",
     "url": "https://goproxy.baidu.com/",
     "item": ["goproxy"]
-  },{
+  },
+  {
     "name": "Goproxy CN",
     "url": "https://goproxy.cn/",
     "item": ["goproxy"]
-  },{
-    "name": "goproxy.io",
-    "url": "https://goproxy.io",
+  },
+  {
+    "name": "Goproxy.io",
+    "url": "https://goproxy.io/",
     "item": ["goproxy"]
   }
 ]
