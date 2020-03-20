@@ -51,8 +51,11 @@ deb http://mirrors.163.com/debian-archive/debian/ wheezy main non-free contrib
 deb http://mirrors.163.com/debian-archive/debian/ wheezy-backports main non-free contrib
 deb-src http://mirrors.163.com/debian-archive/debian/ wheezy main non-free contrib
 deb-src http://mirrors.163.com/debian-archive/debian/ wheezy-backports main non-free contrib
+deb http://mirrors.163.com/debian-archive/debian-security/ wheezy/updates main non-free contrib
+deb-src http://mirrors.163.com/debian-archive/debian-security/ wheezy/updates main non-free contrib
 EOF
-apt-get update
+
+apt-get -o Acquire::Check-Valid-Until=false update
 ```
 
 ## ubuntu
