@@ -40,6 +40,24 @@ apt-get update
 sudo sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 ```
 
+## debian archive
+
+debian 旧版本系统(2[hamm ]-7[wheezy])源都放在 debian-archive 中，
+
+```
+cp /etc/apt/sources.list{,-bak}
+cat << EOF > /etc/apt/sources.list
+deb http://mirrors.163.com/debian-archive/debian/ wheezy main non-free contrib
+deb http://mirrors.163.com/debian-archive/debian/ wheezy-updates main non-free contrib
+deb http://mirrors.163.com/debian-archive/debian/ wheezy-backports main non-free contrib
+deb-src http://mirrors.163.com/debian-archive/debian/ wheezy main non-free contrib
+deb-src http://mirrors.163.com/debian-archive/debian/ wheezy-updates main non-free contrib
+deb-src http://mirrors.163.com/debian-archive/debian/ wheezy-backports main non-free contrib
+deb http://mirrors.163.com/debian-archive/debian-security/ wheezy/updates main non-free contrib
+deb-src http://mirrors.163.com/debian-archive/debian-security/ wheezy/updates main non-free contrib
+EOF
+```
+
 ## ubuntu
 
 ```bash
@@ -169,14 +187,14 @@ sudo apt-get install docker-ce
 
 > 指定`registry-mirrors`
 
-- azure  http://dockerhub.azk8s.cn
-- tencent  https://mirror.ccs.tencentyun.com
-- daocloud  http://f1361db2.m.daocloud.io
-- netease  http://hub-mirror.c.163.com
-- ustc  https://docker.mirrors.ustc.edu.cn
-- aliyun  https://2h3po24q.mirror.aliyuncs.com
-- qiniu  https://reg-mirror.qiniu.com
-  
+- azure http://dockerhub.azk8s.cn
+- tencent https://mirror.ccs.tencentyun.com
+- daocloud http://f1361db2.m.daocloud.io
+- netease http://hub-mirror.c.163.com
+- ustc https://docker.mirrors.ustc.edu.cn
+- aliyun https://2h3po24q.mirror.aliyuncs.com
+- qiniu https://reg-mirror.qiniu.com
+
 ```bash
 cp  /etc/docker/daemon.json{,-bak}
 cat > /etc/docker/daemon.json <<EOF
@@ -206,7 +224,6 @@ EOF
 ```bash
 curl -sSL https://git.io/dspeed | bash
 ```
-
 
 **docker.io 镜像加速**
 
@@ -327,7 +344,7 @@ maven 项目的`pom.xml`
 </pluginRepositories>
 ```
 
-**gradle**
+## gradle
 
 `build.gradle` 文件
 
@@ -339,4 +356,13 @@ allprojects {
         mavenCentral()
     }
 }
+```
+
+## NuGet
+
+选择工程-》NuGet包管理器-》程序包管理器设置
+
+```
+https://nuget.cdn.azure.cn/v3/index.json
+https://repo.huaweicloud.com/repository/nuget/v3/index.json
 ```

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="search">
-      <a-input-search placeholder="输入软件名称"
+      <a-input-search placeholder="输入软件名称或提供方"
                       v-model="search_text"
                       @search="onSearch"
                       enterButton="搜索..." />
@@ -16,7 +16,27 @@
                 :dataSource="softwareList">
           <div slot="header"
                class="list-header">
-            <b>提供方: {{ Object.keys(providerData).length}} </b> <b> 软件数目: {{ softwareList.length }}</b>
+            <a-popover title="提供方列表"
+                       placement="rightTop">
+              <template slot="content">
+                <a-list :grid="{ gutter: 16, column: 2 }"
+                        :dataSource="Object.keys(providerData)"
+                        style="width:240px">
+                  <a-list-item slot="renderItem"
+                               slot-scope="item">
+                    <a target="_blank"
+                       :href="providerData[item]['url']">{{item}} </a>
+                  </a-list-item>
+                </a-list>
+                <!-- <template v-for="tag in Object.keys(providerData)">
+                  <p :key="tag">
+                    <a target="_blank"
+                       :href="providerData[tag]['url']">{{tag}} </a></p>
+                </template> -->
+              </template>
+              <b>提供方: {{ Object.keys(providerData).length}} </b>
+            </a-popover>
+            <b>软件数目: {{ softwareList.length }}</b>
             <div class="header-switch"></div>
           </div>
           <a-list-item slot="renderItem"
@@ -48,7 +68,8 @@ import {
   List,
   Tag,
   Input,
-  Spin
+  Spin,
+  Popover
 } from 'ant-design-vue'
 
 export default {
@@ -86,7 +107,8 @@ export default {
     AListItemMeta: List.Item.Meta,
     ATag: Tag,
     AInputSearch: Input.Search,
-    ASpin: Spin
+    ASpin: Spin,
+    APopover: Popover
   },
   methods: {
     onSearch (value) {
@@ -109,24 +131,30 @@ export default {
             let color = e['tag_color']
             let url = e['url']
             this.providerData[name] = { tag_color: color, url: url }
-
-            e['item'].forEach(i => {
-              let softwareName = i.toLowerCase()
+            for (var i = 0; i < e['item'].length; i++) {
+              e['item'][i] = e['item'][i].toLowerCase()
+              let softwareName = e['item'][i]
               if (!this.softwareData.hasOwnProperty(softwareName)) {
                 this.softwareData[softwareName] = []
               }
               this.softwareData[softwareName].push(name)
-            })
+            }
           })
           this.softwareList = Object.keys(this.softwareData)
           if (search !== '') {
+            search = search.trim()
             let resultList = []
-            this.softwareList.forEach((e) => {
+            this.softwareList.forEach(e => {
               if (e.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
                 resultList.push(e)
               }
             })
-            this.softwareList = resultList
+            this.monitorData.forEach(e => {
+              if (e['name'].toLowerCase().indexOf(search.toLowerCase()) !== -1) {
+                resultList = resultList.concat(e['item'])
+              }
+            })
+            this.softwareList = Array.from(new Set(resultList))
           }
           this.spinning = false
         })

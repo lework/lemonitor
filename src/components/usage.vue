@@ -1,7 +1,10 @@
 <template>
   <div class="usage-content">
     <a-spin :spinning="spinning">
-      <vue-markdown :source="data"></vue-markdown>
+      <div class="toc">目录 <div id="toc"/> </div>
+      <vue-markdown :source="data"
+                    :toc="true"
+                    toc-id="toc"></vue-markdown>
     </a-spin>
   </div>
 </template>
@@ -72,9 +75,19 @@ export default {
   padding: 0px 80px 20px 80px;
   @media screen {
     @media (max-width: @min-width) {
-      padding:  0 10px 10px 10px;
+      padding: 0 10px 10px 10px;
     }
   }
 }
-
+.toc {
+  margin-left: -160px;
+  position: fixed;
+  z-index: 999;
+  @media screen {
+    @media (max-width: @min-width) {
+      position: relative;
+      margin-left: 0px;
+    }
+  }
+}
 </style>
