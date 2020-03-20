@@ -48,14 +48,11 @@ debian 旧版本系统(2[hamm ]-7[wheezy])源都放在 debian-archive 中，
 cp /etc/apt/sources.list{,-bak}
 cat << EOF > /etc/apt/sources.list
 deb http://mirrors.163.com/debian-archive/debian/ wheezy main non-free contrib
-deb http://mirrors.163.com/debian-archive/debian/ wheezy-updates main non-free contrib
 deb http://mirrors.163.com/debian-archive/debian/ wheezy-backports main non-free contrib
 deb-src http://mirrors.163.com/debian-archive/debian/ wheezy main non-free contrib
-deb-src http://mirrors.163.com/debian-archive/debian/ wheezy-updates main non-free contrib
 deb-src http://mirrors.163.com/debian-archive/debian/ wheezy-backports main non-free contrib
-deb http://mirrors.163.com/debian-archive/debian-security/ wheezy/updates main non-free contrib
-deb-src http://mirrors.163.com/debian-archive/debian-security/ wheezy/updates main non-free contrib
 EOF
+apt-get update
 ```
 
 ## ubuntu
