@@ -2,6 +2,20 @@
 
 > 用于设置常用软件的国内镜像，以便加速下载资源。国内提供的[镜像站点](./)。
 
+## 测速
+
+系统软件源测速
+
+```bash
+curl -sSL https://cdn.jsdelivr.net/gh/lework/script/shell/os_repo_speed_test.sh | bash
+```
+
+Docker hub 测速
+
+```bash
+curl -sSL https://cdn.jsdelivr.net/gh/lework/script/shell/docker_hub_speed_test.sh | bash
+```
+
 ## centos
 
 ```bash
@@ -260,6 +274,21 @@ curl -sSL https://git.io/getgcr | bash -s - -t v1.16.3
 curl -sSL https://git.io/getgcr | bash -s quay.io/coreos/kube-state-metrics:v1.7.2
 ```
 
+**docker HTTP/HTTPS 代理**
+
+```bash
+mkdir /etc/systemd/system/docker.service.d/
+
+cat << EOF > /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:8123/"
+Environment="HTTPS_PROXY=https://127.0.0.1:8123/"
+EOF
+
+systemctl daemon-reload
+systemctl restart docker
+```
+
 ## kubernetes
 
 **Debian / Ubuntu**
@@ -360,9 +389,25 @@ allprojects {
 
 ## NuGet
 
-选择工程-》NuGet包管理器-》程序包管理器设置
+选择工程-》NuGet 包管理器-》程序包管理器设置
 
 ```
 https://nuget.cdn.azure.cn/v3/index.json
 https://repo.huaweicloud.com/repository/nuget/v3/index.json
+```
+
+## Hex
+
+```
+export HEX_MIRROR="https://hexpm.upyun.com"
+export HEX_CDN="https://hexpm.upyun.com"
+```
+
+## github 代理
+
+> 仅限访问和下载，请不要提交账号信息，需保护自己的隐私。
+
+```
+https://gh.lework.workers.dev  # 对github clone、release、archive以及项目文件进行加速
+https://github.com.cnpmjs.org  # 代理访问github站点
 ```

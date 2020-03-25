@@ -1068,7 +1068,7 @@
   {
     "name": "Ruby China 官方",
     "url": "https://gems.ruby-china.com/",
-    "item": ["RubyGems"]
+    "item": ["RubyGems", "Ruby"]
   },
   {
     "name": "公云",
@@ -1248,6 +1248,25 @@
     ]
   },
   {
+    "name": "同济大学",
+    "url": "https://mirrors.tongji.edu.cn/public/",
+    "item": [
+      "Apache",
+      "CRAN",
+      "CentOS",
+      "Ubuntu",
+      "Kali Linux",
+      "Homebrew",
+      "Homebrew Bottles",
+      "IUS",
+      "EPEL",
+      "Maven Central",
+      "NPM",
+      "PyPI",
+      "RubyGems"
+    ]
+  },
+  {
     "name": "百度Goproxy",
     "url": "https://goproxy.baidu.com/",
     "item": ["goproxy"]
@@ -1261,5 +1280,10 @@
     "name": "Goproxy.io",
     "url": "https://goproxy.io/",
     "item": ["goproxy"]
+  },
+  {
+    "name": "upyun",
+    "url": "https://hexpm.upyun.com",
+    "item": ["hex"]
   }
 ]
