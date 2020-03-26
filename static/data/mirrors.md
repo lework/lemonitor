@@ -51,7 +51,7 @@ apt-get update
 也可以直接替换源
 
 ```bash
-sudo sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+sudo sed -i 's/deb.debian.org/mirrors.163.com/g' /etc/apt/sources.list
 ```
 
 ## debian archive
@@ -75,7 +75,7 @@ apt-get -o Acquire::Check-Valid-Until=false update
 ## ubuntu
 
 ```bash
-sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+sudo sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 ```
 
 ## alpine
