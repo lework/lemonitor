@@ -12,8 +12,12 @@ import store from './store'
 Vue.config.productionTip = false
 // Vue.use(Antd)
 Vue.prototype.$message = message
+
+// axios
+axios.defaults.baseURL = process.env.API_ROOT
 Vue.prototype.$axios = axios
 
+// loading
 router.beforeEach((to, from, next) => {
   store.dispatch('onLoading', true)
   next()
