@@ -13,8 +13,14 @@
 import { Spin } from 'ant-design-vue'
 import VueMarkdown from 'vue-markdown'
 
-import hljs from 'highlight.js'
+import * as hljs from 'highlight.js/lib/highlight'
+import * as bash from 'highlight.js/lib/languages/bash'
+import * as xml from 'highlight.js/lib/languages/xml'
+
 import 'highlight.js/styles/atom-one-dark.css'
+
+hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('xml', xml)
 
 const highlightCode = () => {
   const preEl = document.querySelectorAll('pre')
