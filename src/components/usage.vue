@@ -1,10 +1,14 @@
 <template>
   <div class="usage-content">
     <a-spin :spinning="spinning">
-      <div class="toc">目录 <div id="toc"/> </div>
-      <vue-markdown :source="data"
-                    :toc="true"
-                    toc-id="toc"></vue-markdown>
+      <div class="toc">目录
+        <div id="toc" />
+      </div>
+      <div class="markdown">
+        <vue-markdown :source="data"
+                      :toc="true"
+                      toc-id="toc"></vue-markdown>
+      </div>
     </a-spin>
   </div>
 </template>
@@ -72,7 +76,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @min-width: 1000px;
 
 .usage-content {
@@ -94,5 +98,9 @@ export default {
       margin-left: 0px;
     }
   }
+}
+.markdown h2 {
+  padding-top: 90px;
+  margin-top: -90px;
 }
 </style>

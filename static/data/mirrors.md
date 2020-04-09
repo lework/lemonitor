@@ -51,7 +51,9 @@ apt-get update
 也可以直接替换源
 
 ```bash
-sudo sed -i 's/deb.debian.org/mirrors.163.com/g' /etc/apt/sources.list
+sudo sed -e 's/deb.debian.org/mirrors.163.com/g' \
+  -e 's#security.debian.org#mirrors.163.com/debian-security#g' \
+  -i /etc/apt/sources.list
 ```
 
 ## debian archive
@@ -83,6 +85,22 @@ sudo sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sourc
 ```bash
 sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ```
+
+## freebsd
+
+```bash
+# /etc/pkg/FreeBSD.conf
+
+FreeBSD: {
+  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
+  mirror_type: "srv",
+  signature_type: "fingerprints",
+  fingerprints: "/usr/share/keys/pkg",
+  enabled: yes
+}
+```
+
+
 
 ## pip
 
