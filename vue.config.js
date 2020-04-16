@@ -1,5 +1,5 @@
 const path = require("path");
-const resolve = dir => path.join(__dirname, dir);
+const resolve = dir => path.resolve(__dirname, dir);
 const CompressionWebpackPlugin = require("compression-webpack-plugin"); //Gzip
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
@@ -65,8 +65,8 @@ module.exports = {
       .set("@components", resolve("src/components"))
       .set("@views", resolve("src/views"))
       .set("@router", resolve("src/router"))
-      .set("@store", resolve("src/store"))
-      .set("@ant-design/icons/lib/dist$", resolve("src/utils/antdIcon.js"));
+      .set("@store", resolve("src/store"));
+      // .set("@ant-design/icons/lib/dist$", resolve("src/utils/antdIcon.js"));
 
     if (IS_PROD) {
       // 压缩图片
@@ -132,6 +132,7 @@ module.exports = {
         })
       );
     }
+    
     config.plugins = [...config.plugins, ...plugins];
   }
 };

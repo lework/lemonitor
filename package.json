@@ -1,6 +1,6 @@
 {
   "name": "lemonitor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,6 +15,7 @@
     "@babel/runtime": "^7.9.2",
     "amfe-flexible": "^2.2.1",
     "ant-design-vue": "^1.4.12",
+    "axios": "^0.19.2",
     "babel-plugin-import": "^1.13.0",
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.6.4",
