@@ -213,7 +213,7 @@ sudo apt-get update
 sudo apt-get install docker-ce
 ```
 
-## 容器镜像
+## docker
 
 **docker 客户端**
 
@@ -305,6 +305,66 @@ EOF
 
 systemctl daemon-reload
 systemctl restart docker
+```
+
+## containerd
+
+**registry代理**
+
+生成默认配置
+```bash
+containerd config default > /etc/containerd/config.toml
+```
+
+将registry.mirrors替换成代理的
+```
+    [plugins.cri.registry]
+      [plugins.cri.registry.mirrors]
+        [plugins.cri.registry.mirrors."docker.io"]
+          endpoint = ["https://registry-1.docker.io"]
+```
+
+```bash
+sed -i 's#https://registry-1.docker.io#https://docker.mirrors.ustc.edu.cn#g' /etc/containerd/config.toml
+```
+
+**http代理**
+
+```
+# /usr/lib/systemd/system/containerd.service
+[Unit]
+Description=containerd container runtime
+Documentation=https://containerd.io
+After=network.target
+
+[Service]
+ExecStartPre=-/sbin/modprobe overlay
+ExecStart=/usr/bin/containerd
+KillMode=process
+Delegate=yes
+LimitNOFILE=1048576
+# Having non-zero Limit*s causes performance problems due to accounting overhead
+# in the kernel. We recommend using cgroups to do container-local accounting.
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+Environment="HTTP_PROXY=http://127.0.0.1:8123/"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## podman 
+
+```bash
+cp /etc/containers/registries.conf{,.bak}
+cat > /etc/containers/registries.conf << EOF
+unqualified-search-registries = ["docker.io"]
+
+[[registry]]
+prefix = "docker.io"
+location = "uyah70su.mirror.aliyuncs.com"
+EOF
 ```
 
 ## kubernetes

@@ -1,28 +1,28 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import 'amfe-flexible/index.js'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
 
-Vue.use(Router)
+Vue.use(VueRouter);
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      meta: {
-        title: 'home'
-      },
-      component: resolve => {
-        require(['@/components/home.vue'], resolve)
-      }
-    },
-    {
-      path: '/usage',
-      meta: {
-        title: 'usage'
-      },
-      component: resolve => {
-        require(['@/components/usage.vue'], resolve)
-      }
-    }
-  ]
-})
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Home
+  },
+  {
+    path: "/usage",
+    name: "Usage",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "usage" */ "../views/Usage.vue")
+  }
+];
+
+const router = new VueRouter({
+  routes
+});
+
+export default router;

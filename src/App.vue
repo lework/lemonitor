@@ -8,57 +8,57 @@
     </div>
     <div class="main">
       <a-spin tip="Loading..." :spinning="isLoading" style="margin: 20px">
-      <div class="content">
-        <a-back-top />
-        <router-view />
-      </div>
+        <div class="content">
+          <a-back-top />
+          <router-view />
+        </div>
       </a-spin>
       <div class="footer">
         <p>
-          <a href="https://github.com/lework/lemonitor/issues"
-             target="_blank">告诉我们</a>，我们可能会把它带给您！
+          <a href="https://github.com/lework/lemonitor/issues" target="_blank"
+            >告诉我们</a
+          >，我们可能会把它带给您！
         </p>
-        <span>已稳定运行 <b>{{ runDay }}</b> 天！</span>
+        <span
+          >已稳定运行 <b>{{ runDay }}</b> 天！</span
+        >
         leversion ©2020 Created by Lework
-        <a href="https://github.com/lework/lemonitor"
-           target="_blank">GitHub</a>
+        <a href="https://github.com/lework/lemonitor" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { BackTop, Spin } from 'ant-design-vue'
-import {mapState} from 'vuex'
+import { BackTop, Spin } from "ant-design-vue";
+import { mapState } from "vuex";
 
 export default {
-  name: 'app',
-  data () {
+  name: "app",
+  data() {
     return {
       runDay: parseInt(
         (new Date().getTime() -
-          new Date(Date.parse('2020-01-21'.replace(/-/g, '/'))).getTime()) /
-        1000 /
-        3600 /
-        24
+          new Date(Date.parse("2020-01-21".replace(/-/g, "/"))).getTime()) /
+          1000 /
+          3600 /
+          24
       ),
-      data: '',
+      data: "",
       spinning: true
-    }
+    };
   },
   components: {
     ABackTop: BackTop,
     ASpin: Spin
   },
   computed: {
-    ...mapState([
-      'isLoading'
-    ])
+    ...mapState(["isLoading"])
   }
-}
+};
 </script>
 
-<style lang=less scoped>
+<style lang="less" scoped>
 @min-width: 1000px;
 
 #app {

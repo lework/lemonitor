@@ -1,23 +1,22 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import Vue from "vue";
+import Vuex from "vuex";
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
     isLoading: false
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
-    updateLoadingState (state, flag) {
-      state.isLoading = flag
+    updateLoadingState(state, flag) {
+      state.isLoading = flag;
     }
   },
   actions: {
-    onLoading (context, flag) {
-      context.commit('updateLoadingState', flag)
+    onLoading(context, flag) {
+      context.commit("updateLoadingState", flag);
     }
   },
   modules: {}
-})
-export default store
+});
+export default store;
