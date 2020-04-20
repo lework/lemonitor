@@ -245,7 +245,7 @@ cat > /etc/docker/daemon.json <<EOF
     ],
     "exec-opts": ["native.cgroupdriver=systemd"],
     "registry-mirrors": [
-        "http://dockerhub.azk8s.cn"
+        "http://hub-mirror.c.163.com"
     ]
 }
 EOF
@@ -489,3 +489,13 @@ export HEX_CDN="https://hexpm.upyun.com"
 https://gh.lework.workers.dev  # 对github clone、release、archive以及项目文件进行加速
 https://github.com.cnpmjs.org  # 代理访问github站点
 ```
+
+## 前端开源项目 CDN
+
+- https://www.jsdelivr.com/
+- https://www.bootcdn.cn/
+- https://cdnjs.com/
+- http://www.staticfile.org/
+- http://jscdn.upai.com
+- https://cdn.baomitu.com/
+

@@ -9,10 +9,29 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV); //env
 const isAnalyz = process.env.IS_ANALYZ === "true";
 
+const assetsCDN = {
+  externals: {
+    vue: "Vue",
+    vuex: "Vuex",
+    "vue-router": "VueRouter",
+    axios: "axios"
+  },
+  assets: {
+    css: [],
+    // https://unpkg.com/:package@:version/:file
+    // https://cdn.jsdelivr.net/package:version/:file
+    js: [
+      "//cdn.jsdelivr.net/npm/vue@latest/dist/vue.min.js",
+      "//cdn.jsdelivr.net/npm/vue-router@latest/dist/vue-router.min.js",
+      "//cdn.jsdelivr.net/npm/vuex@latest/dist/vuex.min.js",
+      "//cdn.jsdelivr.net/npm/axios@latest/dist/axios.min.js"
+    ]
+  }
+};
+
 module.exports = {
-  // publicPath: "./", //打包后的位置(如果不设置这个静态资源会报404)
   publicPath:
-    process.env.NODE_ENV === "production" ? process.env.API_ROOT : "./",
+    process.env.NODE_ENV === "production" ? process.env.API_ROOT : "./", //打包后的位置(如果不设置这个静态资源会报404)
   outputDir: "docs", //打包后的目录名称
   assetsDir: "static", //静态资源目录名称
   productionSourceMap: false, //去掉打包的时候生成的map文件
@@ -43,6 +62,7 @@ module.exports = {
           analyzerMode: "static"
         }
       ]);
+
     // 修复HMR
     config.resolve.symlinks(true);
 
@@ -66,9 +86,15 @@ module.exports = {
       .set("@views", resolve("src/views"))
       .set("@router", resolve("src/router"))
       .set("@store", resolve("src/store"));
-      // .set("@ant-design/icons/lib/dist$", resolve("src/utils/antdIcon.js"));
+    // .set("@ant-design/icons/lib/dist$", resolve("src/utils/antdIcon.js"));
 
     if (IS_PROD) {
+      // cdn assets
+      config.plugin("html").tap(args => {
+        args[0].cdn = assetsCDN.assets;
+        return args;
+      });
+
       // 压缩图片
       // 需要 npm i -D image-webpack-loader
       config.module
@@ -132,7 +158,9 @@ module.exports = {
         })
       );
     }
-    
     config.plugins = [...config.plugins, ...plugins];
+
+    // cdn assets
+    config.externals = IS_PROD ? assetsCDN.externals : {};
   }
 };
