@@ -14,20 +14,6 @@
     <meta name="description"  content="开源软件的国内镜像站点">
     <meta name="keywords"  content="开源软件,镜像站点,国内镜像">
     <title>lemonitor</title>
-    <!-- 使用CDN的CSS文件 -->
-    <% for (var i in htmlWebpackPlugin.options.cdn &&
-    htmlWebpackPlugin.options.cdn.css) { %>
-    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
-    <% } %>
-
-    <!-- 使用CDN的JS文件 -->
-    <% for (var i in htmlWebpackPlugin.options.cdn &&
-    htmlWebpackPlugin.options.cdn.js) { %>
-    <script
-      type="text/javascript"
-      src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"
-    ></script>
-    <% } %>
   </head>
   <body>
     <div id="app"></div>
