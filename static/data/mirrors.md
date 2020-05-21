@@ -88,23 +88,28 @@ sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 ## freebsd
 
-```bash
-# /etc/pkg/FreeBSD.conf
+pkg 软件源
 
+```bash
+# /usr/local/etc/pkg/repos/FreeBSD.conf
 FreeBSD: {
-  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest",
-  mirror_type: "srv",
-  signature_type: "fingerprints",
-  fingerprints: "/usr/share/keys/pkg",
-  enabled: yes
+  url: "pkg+http://mirrors.ustc.edu.cn/freebsd-pkg/${ABI}/latest",
 }
+
+pkg update -f
 ```
 
+ports 软件源
 
+```bash
+# /etc/make.conf
+
+MASTER_SITE_OVERRIDE?=http://mirrors.ustc.edu.cn/freebsd-ports/distfiles/${DIST_SUBDIR}/
+```
 
 ## pip
 
-- 阿里云 http://mirrors.aliyun.com/pypi/simple
+- 阿里云 https://mirrors.aliyun.com/pypi/simple
 - 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple
 - 豆瓣(douban) http://pypi.douban.com/simple
 - 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple
@@ -113,23 +118,28 @@ FreeBSD: {
 使用 pip 的时候在后面加上-i 参数，指定 pip 的下载源
 
 ```bash
- pip install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install numpy -i https://mirrors.aliyun.com/pypi/simple
 ```
 
 上面命令每次运行需要指定网址，可进行永久修改：
+
+```bash
+pip install pip -U
+pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
+```
 
 windows 下: 在 user 目录中创建一个 pip 目录，如：`C:\Users（用户）\xx\pip`，新建文件 pip.ini，内容如下
 
 ```bash
 [global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+index-url = https://mirrors.aliyun.com/pypi/simple
 ```
 
 linux 下: 修改 ~/.pip/pip.conf （如果没有自己创建一个）， 内容如下：
 
 ```bash
 [global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+index-url = https://mirrors.aliyun.com/pypi/simple
 ```
 
 ## easy_install
@@ -137,7 +147,7 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 ```bash
 cat >> ~/.pydistutils.cfg  <<EOF
 [easy_install]
-index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
+index-url = https://mirrors.aliyun.com/pypi/simple
 EOF
 ```
 
@@ -154,6 +164,8 @@ bundle config mirror.https://rubygems.org https://gems.ruby-china.com
 npm config set registry https://registry.npm.taobao.org
 npm config list
 ```
+
+## yarn
 
 ```bash
 yarn config set registry https://registry.npm.taobao.org
