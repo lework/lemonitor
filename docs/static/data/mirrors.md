@@ -172,7 +172,7 @@ yarn config set registry https://registry.npm.taobao.org
 yarn config list
 ```
 
-## go 代理
+## go
 
 - https://mirrors.aliyun.com/goproxy/
 - https://goproxy.io
@@ -188,9 +188,14 @@ export GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 ## jenkins
 
-游览器访问 jenkins 例如 [http://localhost:8080/pluginManager/advanced]
+游览器访问 jenkins,例如: [http://localhost:8080/pluginManager/advanced]
 
-修改为国内源 `https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json`
+选择一个国内源: 
+- https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/tencent/update-center.json
+- https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/huawei/update-center.json
+- https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/tsinghua/update-center.json
+- https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/ustc/update-center.json
+- https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/bit/update-center.json
 
 ## docker-ce
 
@@ -231,13 +236,10 @@ sudo apt-get install docker-ce
 
 > 指定`registry-mirrors`
 
-- azure http://dockerhub.azk8s.cn
-- tencent https://mirror.ccs.tencentyun.com
-- daocloud http://f1361db2.m.daocloud.io
+- azure http://dockerhub.azk8s.cn (内部使用)
+- tencent https://mirror.ccs.tencentyun.com (内部使用)
 - netease http://hub-mirror.c.163.com
-- ustc https://docker.mirrors.ustc.edu.cn
 - aliyun https://2h3po24q.mirror.aliyuncs.com
-- qiniu https://reg-mirror.qiniu.com
 
 ```bash
 cp  /etc/docker/daemon.json{,-bak}
@@ -271,11 +273,15 @@ curl -sSL https://git.io/dspeed | bash
 
 **docker.io 镜像加速**
 
+> dockerhub.azk8s.cn 只能内部使用了
+
 ```bash
 docker pull dockerhub.azk8s.cn/library/centos
 ```
 
 **gcr.io 镜像加速**
+
+> gcr.azk8s.cn 只能内部使用了
 
 ```bash
 docker pull gcr.azk8s.cn/google_containers/kube-apiserver:v1.16.3
@@ -283,6 +289,8 @@ docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/kube-apiserver:v
 ```
 
 **quay.io 镜像加速**
+
+> quay.azk8s.cn 只能内部使用了
 
 ```bash
 docker pull quay.azk8s.cn/coreos/kube-state-metrics:v1.7.2
@@ -410,6 +418,21 @@ yum install -y kubelet kubeadm kubectl
 systemctl enable kubelet && systemctl start kubelet
 ```
 
+## google-containers
+
+gcr hub 代理
+
+```bash
+k8sgcr.lework.workers.dev ===> k8s.gcr.io
+k8sgcr.lework.workers.dev/coredns:1.7.0 === k8s.gcr.io/coredns:1.7.0 
+
+gcr.lework.workers.dev ===> gcr.io
+gcr.lework.workers.dev/google-containers/coredns:1.7.0 === gcr.io/google-containers/coredns:1.7.0 
+
+registry.aliyuncs.com/k8sxio ===> k8s.gcr.io
+registry.aliyuncs.com/k8sxio/coredns:1.7.0 === k8s.gcr.io/coredns:1.7.0
+```
+
 ## cygwin
 
 选择 Install from Internet, 在”User URL”处输入以下地址：
@@ -493,14 +516,35 @@ export HEX_MIRROR="https://hexpm.upyun.com"
 export HEX_CDN="https://hexpm.upyun.com"
 ```
 
-## github 代理
+## github
 
 > 仅限访问和下载，请不要提交账号信息，需保护自己的隐私。
 
 ```
 https://gh.lework.workers.dev  # 对github clone、release、archive以及项目文件进行加速
-https://github.com.cnpmjs.org  # 代理访问github站点
 ```
+
+Release、Code(ZIP) 文件加速：
+```
+https://gh.con.sh | 美国 01
+https://gh.api.99988866.xyz | 美国 02
+https://download.fastgit.org | 日本东京
+https://g.ioiox.com | 中国香港 （估计 10M 小水管，但稳定，不会动不动下载中断，算是备用
+https://git.yumenaka.net | 美国洛杉矶（晚上时比前面两个美国的更快
+```
+Git Clone 加速：
+```
+https://hub.fastgit.org | 中国香港
+https://gitclone.com | 中国浙江杭州
+https://github.com.cnpmjs.org | 新加坡
+```
+Raw 文件加速：
+```
+https://cdn.jsdelivr.net | 中国国内
+https://raw.fastgit.org | 中国香港
+https://git.yumenaka.net | 美国洛杉矶
+```
+
 
 ## 前端开源项目 CDN
 
@@ -510,4 +554,3 @@ https://github.com.cnpmjs.org  # 代理访问github站点
 - http://www.staticfile.org/
 - http://jscdn.upai.com
 - https://cdn.baomitu.com/
-
